@@ -32,7 +32,7 @@ This algorithm was tested (but not certified) using all applicable NIST test vec
 
 The usage is very simple, as illustrated in the following code example:
 
-```
+```c++
 #include "../InlineSHA256/CBC.hpp"
 
 #include <iostream>
@@ -88,14 +88,14 @@ int main(int argc, const char * argv[]) {
 
 For encrypting and decrypting, you need a working S-Box:
 
-```
+```c++
 aes256::SubstitutionBox box;
 box.initialize();
 ```
 
 Creating the data for this S-Box takes some time. Therefore you are free to create this S-Box once at the start of your code and reuse it for all encrypt and descrypt calls.
 
-```
+```c++
 #include <mutex>
 // ...
 static aes256::SubstitutionBox box;
@@ -122,13 +122,13 @@ const uint8_t iv[aes256::cBlockSizeBytes] = {
 
 The data is encrypted calling `encryptDataCBC`:
 
-```
+```c++
 aes256::encryptDataCBC(box, buffer, bufferSize, key, iv);
 ```
 
 To descrypt the data, call `decryptDataCBC`:
 
-```
+```c++
 aes256::decryptDataCBC(box, buffer, bufferSize, key, iv);
 ```
 
